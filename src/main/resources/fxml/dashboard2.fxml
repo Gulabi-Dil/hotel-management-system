@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.dashboardController">
+   <left>
+      <VBox prefHeight="700.0" prefWidth="174.0" style="-fx-background-color: #6b061c;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="174.0" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="Noto Looped Lao Bold" size="20.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="563.0" prefWidth="174.0" style="-fx-padding: 12 0 0 0; -fx-border-color: white; -fx-border-width: 0 0 2 0; -fx-spacing: 2;">
+               <children>
+                  <Button fx:id="btnHotels" focusTraversable="false" mnemonicParsing="false" onAction="#handleHotels" prefHeight="67.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-family: 'Roboto Medium'; -fx-font-size: 13px; -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16; -fx-cursor: hand; -fx-border-color: transparent;" text="  🏨  Hotels" />
+                  <Button fx:id="btnCustomers" focusTraversable="false" mnemonicParsing="false" onAction="#handleCustomers" prefHeight="67.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-text-fill: white;                                -fx-font-family: 'Roboto'; -fx-font-size: 13px;                                -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;                                -fx-cursor: hand; -fx-border-color: transparent;" text="  👤  Customers" />
+                  <Button fx:id="btnStats" focusTraversable="false" mnemonicParsing="false" onAction="#handleStats" prefHeight="67.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-text-fill: white;                                -fx-font-family: 'Roboto'; -fx-font-size: 13px;                                -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;                                -fx-cursor: hand; -fx-border-color: transparent;" text="  📊  Statistics" />
+               </children>
+            </VBox>
+            <Label prefHeight="32.0" prefWidth="178.0" text="       Manipal" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="174.0" text="Hospitality       " textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1126.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="106.0" text="Hotels" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <HBox layoutX="14.0" layoutY="60.0" prefHeight="67.0" prefWidth="493.0" spacing="12">
+               <children>
+                  <VBox prefWidth="110" style="-fx-background-color: #6b061c; -fx-background-radius: 6;                                      -fx-padding: 10 16; -fx-alignment: center;">
+                     <children>
+                        <Label fx:id="totalHotelsLabel" style="-fx-font-size: 24px; -fx-font-family: 'Roboto Medium';" text="0" textFill="WHITE" />
+                        <Label style="-fx-font-size: 11px; -fx-opacity: 0.75;" text="Hotels" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="110" style="-fx-background-color: #6b061c; -fx-background-radius: 6;                                      -fx-padding: 10 16; -fx-alignment: center;">
+                     <children>
+                        <Label fx:id="totalRoomsLabel" style="-fx-font-size: 24px; -fx-font-family: 'Roboto Medium';" text="0" textFill="WHITE" />
+                        <Label style="-fx-font-size: 11px; -fx-opacity: 0.75;" text="Rooms" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="110" style="-fx-background-color: #6b061c; -fx-background-radius: 6;                                      -fx-padding: 10 16; -fx-alignment: center;">
+                     <children>
+                        <Label fx:id="totalBookingsLabel" style="-fx-font-size: 24px; -fx-font-family: 'Roboto Medium';" text="0" textFill="WHITE" />
+                        <Label style="-fx-font-size: 11px; -fx-opacity: 0.75;" text="Bookings" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="110" style="-fx-background-color: #6b061c; -fx-background-radius: 6;                                      -fx-padding: 10 16; -fx-alignment: center;">
+                     <children>
+                        <Label fx:id="totalStaffLabel" style="-fx-font-size: 24px; -fx-font-family: 'Roboto Medium';" text="0" textFill="WHITE" />
+                        <Label style="-fx-font-size: 11px; -fx-opacity: 0.75;" text="Staff" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="147.0" prefHeight="34.0" prefWidth="834.0" spacing="10" style="-fx-alignment: center-left;">
+               <children>
+                  <TextField fx:id="hotelNameField" focusTraversable="false" prefHeight="34.0" prefWidth="198.0" promptText="Hotel Name" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <TextField fx:id="hotelStreetField" focusTraversable="false" prefHeight="34.0" prefWidth="207.0" promptText="Street Name" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <TextField fx:id="hotelLandmarkField" focusTraversable="false" prefHeight="34.0" prefWidth="190.0" promptText="Landmark" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <TextField fx:id="hotelPhonesField" focusTraversable="false" prefHeight="34.0" prefWidth="207.0" promptText="Phones (comma separated)" style="-fx-background-color: white; -fx-font-size: 12px;" />
+               </children>
+            </HBox>
+            <Label layoutX="14.0" layoutY="194.0" prefHeight="29.0" prefWidth="85.0" text="All Hotels" textFill="WHITE">
+               <font>
+                  <Font name="NimbusSans-Bold" size="15.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="scrollPane" layoutX="4.0" layoutY="227.0" prefHeight="467.0" prefWidth="1116.0" style="-fx-background-color: transparent; -fx-background: transparent;" />
+            <Label fx:id="messageLabel" alignment="CENTER" layoutX="145.0" layoutY="194.0" prefHeight="29.0" prefWidth="599.0" textFill="WHITE">
+               <font>
+                  <Font name="NimbusSans-Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchField" layoutX="951.0" layoutY="147.0" prefHeight="34.0" prefWidth="145.0" promptText="Search" style="-fx-background-color: white;" />
+            <Button fx:id="addButton" focusTraversable="false" layoutX="869.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleAddHotel" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Add" />
+            <Button fx:id="toggleDeletedButton" focusTraversable="false" layoutX="951.0" layoutY="96.0" mnemonicParsing="false" onAction="#handleToggleDeleted" prefHeight="34.0" prefWidth="146.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Show Deleted" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

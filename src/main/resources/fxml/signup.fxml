@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="527.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="112.0" text="Create Account" textAlignment="CENTER" textFill="WHITE">
+        <font><Font name="Roboto Medium" size="30.0" /></font>
+    </Label>
+
+    <TextField fx:id="nameField" focusTraversable="false" layoutX="122.0" layoutY="194.0" prefHeight="45.0" prefWidth="284.0" promptText="Full Name" style="-fx-background-color: white;" />
+    <TextField fx:id="emailField" focusTraversable="false" layoutX="122.0" layoutY="339.0" prefHeight="45.0" prefWidth="284.0" promptText="Email" style="-fx-background-color: white;" />
+    <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="120.0" layoutY="469.0" prefHeight="45.0" prefWidth="284.0" promptText="Password" style="-fx-background-color: white;" />
+    <DatePicker fx:id="dobPicker" focusTraversable="false" layoutX="122.0" layoutY="268.0" prefHeight="45.0" prefWidth="140.0" promptText="Date of Birth" />
+    <ComboBox fx:id="sex" focusTraversable="false" layoutX="273.0" layoutY="268.0" prefHeight="45.0" prefWidth="133.0" promptText="Sex" />
+    <Button focusTraversable="false" layoutX="260.0" layoutY="541.0" onAction="#handleCreateAccount" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" prefHeight="45.0" prefWidth="146.0" style="-fx-background-color: #8a0824; -fx-border-color: white; -fx-cursor:hand;" text="Create Account" textFill="WHITE">
+        <font><Font name="Roboto" size="15.0" /></font>
+    </Button>
+    <Button focusTraversable="false" layoutX="119.0" layoutY="541.0" onAction="#handleBack" prefHeight="45.0" prefWidth="125.0" style="-fx-background-color: #8a0824; -fx-border-color: white; -fx-cursor: hand;" text="Back" textFill="WHITE">
+        <font><Font size="15.0" /></font>
+    </Button>
+    <Label fx:id="messageLabel" layoutX="100.0" layoutY="625.0" prefHeight="-1.0" prefWidth="320.0" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+   <TextField fx:id="usernameField" focusTraversable="false" layoutX="122.0" layoutY="405.0" prefHeight="45.0" prefWidth="284.0" promptText="Username" />
+
+</AnchorPane>

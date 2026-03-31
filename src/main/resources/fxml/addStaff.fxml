@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="804.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.addStaffController">
+   <children>
+      <Button fx:id="actionButton" focusTraversable="false" layoutX="372.0" layoutY="115.0" mnemonicParsing="false" onAction="#handleAddStaff" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Add" />
+      <Label fx:id="messageLabel" alignment="CENTER" layoutX="15.0" layoutY="153.0" prefHeight="34.0" prefWidth="774.0" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="1.0" prefHeight="107.0" prefWidth="804.0">
+         <children>
+            <HBox layoutX="25.0" layoutY="15.0" prefHeight="39.0" prefWidth="774.0" spacing="50.0">
+               <children>
+                  <TextField fx:id="staffIDField" focusTraversable="false" prefHeight="34.0" prefWidth="145.0" promptText="Staff ID" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <TextField fx:id="staffNameField" focusTraversable="false" prefHeight="34.0" prefWidth="145.0" promptText="Name" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <ComboBox fx:id="staffGenderField" prefHeight="34.0" prefWidth="145.0" promptText="Gender" style="-fx-background-color: white;" />
+                  <TextField fx:id="staffPhoneField" focusTraversable="false" prefHeight="34.0" prefWidth="145.0" promptText="Phone" style="-fx-background-color: white; -fx-font-size: 12px;" />
+               </children>
+            </HBox>
+            <HBox layoutX="25.0" layoutY="60.0" prefHeight="39.0" prefWidth="755.0" spacing="50.0">
+               <children>
+                  <TextField fx:id="staffEmailField" focusTraversable="false" prefHeight="34.0" prefWidth="145.0" promptText="Email" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <DatePicker fx:id="staffJoiningField" prefHeight="34.0" prefWidth="145.0" promptText="Joining Date" />
+                  <TextField fx:id="staffSalaryField" focusTraversable="false" prefHeight="34.0" prefWidth="145.0" promptText="Salary" style="-fx-background-color: white; -fx-font-size: 12px;" />
+                  <ComboBox fx:id="staffRoleField" prefHeight="34.0" prefWidth="145.0" promptText="Role" style="-fx-background-color: white;" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <InnerShadow>
+         <color>
+            <Color opacity="0.5555555820465088" />
+         </color>
+      </InnerShadow>
+   </effect>
+</AnchorPane>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1126.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.hotelPaymentsPageController">
+   <children>
+      <Label fx:id="hotelNameLabel" layoutX="14.0" layoutY="22.0" prefHeight="46.0" prefWidth="996.0" text="Hotel's Name/Staff" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <TableView fx:id="paymentTable" layoutX="10.0" layoutY="222.0" prefHeight="470.0" prefWidth="1109.0" style="-fx-background-color: #6b061c;">
+        <columns>
+          <TableColumn fx:id="colBookingId" prefWidth="125.0" text="ID" />
+            <TableColumn fx:id="colExtraCharge" prefWidth="143.0" text="Extra Service Charge" />
+            <TableColumn fx:id="colBill" prefWidth="140.0" text="Total Bill" />
+            <TableColumn fx:id="colDate" prefWidth="133.0" text="Payment Date" />
+            <TableColumn fx:id="colMode" prefWidth="154.0" text="Payment Mode" />
+            <TableColumn fx:id="colPaymentStatus" prefWidth="150.0" text="Status" />
+            <TableColumn fx:id="colRating" prefWidth="109.0" text="Rating" />
+            <TableColumn fx:id="colActions" prefWidth="154.0" text="Actions" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" focusTraversable="false" layoutX="1052.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Back" />
+      <Button fx:id="actionButton" focusTraversable="false" layoutX="1052.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleUpdatePayment" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Update" />
+      <TextField fx:id="searchField" focusTraversable="false" layoutX="862.0" layoutY="171.0" prefHeight="34.0" prefWidth="160.0" promptText="Search" style="-fx-background-color: white; -fx-font-size: 12px;" />
+      <VBox layoutX="14.0" layoutY="122.0" prefHeight="98.0" prefWidth="700.0" spacing="3.0">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="675.0" spacing="13.0">
+               <children>
+                  <ComboBox fx:id="bookingIdField" editable="true" focusTraversable="false" prefHeight="34.0" prefWidth="153.0" promptText="Booking ID" style="-fx-background-color: white;" />
+                  <TextField fx:id="extraChargeField" prefHeight="34.0" prefWidth="153.0" promptText="Extra Services Charge" style="-fx-background-color: white;" />
+                  <Label fx:id="paymentDateLabel" prefHeight="34.0" prefWidth="153.0" style="-fx-text-fill: white; -fx-font-size: 12px;" />
+               </children>
+            </HBox>
+            <HBox prefHeight="61.0" prefWidth="622.0" spacing="13.0">
+               <children>
+                  <ComboBox fx:id="statusField" focusTraversable="false" prefHeight="34.0" prefWidth="153.0" promptText="Payment Status" style="-fx-background-color: white;" />
+                  <ComboBox fx:id="modeField" focusTraversable="false" prefHeight="34.0" prefWidth="153.0" promptText="Payment Mode" style="-fx-background-color: white;" />
+                  <ComboBox fx:id="ratingCombo" focusTraversable="false" prefHeight="34.0" prefWidth="153.0" promptText="Rating" style="-fx-background-color: white;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="messageLabel" alignment="CENTER" layoutX="14.0" layoutY="75.0" prefHeight="36.0" prefWidth="923.0" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

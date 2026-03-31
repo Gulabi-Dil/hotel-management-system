@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1126.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.statsController">
+    <children>
+        <Label layoutX="20" layoutY="16" text="Revenue &amp; Analytics" textFill="WHITE">
+            <font><Font name="System Bold" size="18.0" /></font>
+        </Label>
+        <Label fx:id="messageLabel" layoutX="20" layoutY="46" style="-fx-font-size: 11px;" textFill="#ffcccc" />
+        <BarChart fx:id="revenueChart" layoutX="14.0" layoutY="55.0" prefHeight="633.0" prefWidth="548.0" style="-fx-background-color: #6b061c; -fx-background-radius: 10;" title="Monthly Revenue (Last 6 Months)">
+            <xAxis><CategoryAxis tickLabelFill="white" /></xAxis>
+            <yAxis><NumberAxis label="Revenue (₹)" tickLabelFill="white" /></yAxis>
+        </BarChart>
+        <PieChart fx:id="hotelBookingsChart" labelsVisible="true" layoutX="571.0" layoutY="55.0" prefHeight="633.0" prefWidth="541.0" style="-fx-background-color: #6b061c; -fx-background-radius: 10;" title="Bookings by Hotel" />
+
+    </children>
+</AnchorPane>

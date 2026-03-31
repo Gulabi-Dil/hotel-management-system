@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="580.0" prefWidth="420.0"
+    style="-fx-background-color: #8a0824;"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controllers.billPopupController">
+    <children>
+
+        <!-- Title -->
+        <Label text="Invoice" layoutX="20" layoutY="20" textFill="WHITE">
+            <font><Font name="System Bold" size="22.0"/></font>
+        </Label>
+        <Label fx:id="bookingIdLabel" layoutX="20" layoutY="52"
+               textFill="#ffcccc" style="-fx-font-size: 13px;"/>
+
+        <Line startX="20" startY="80" endX="400" endY="80"
+              stroke="WHITE" opacity="0.3"/>
+
+        <!-- Customer + Room -->
+        <Label text="Customer" layoutX="20" layoutY="92"
+               textFill="#ffcccc" style="-fx-font-size: 11px;"/>
+        <Label fx:id="customerNameLabel" layoutX="20" layoutY="110"
+               textFill="WHITE" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <Label fx:id="customerPhoneLabel" layoutX="20" layoutY="130"
+               textFill="WHITE" style="-fx-font-size: 13px; -fx-opacity: 0.8;"/>
+
+        <Label text="Room" layoutX="220" layoutY="92"
+               textFill="#ffcccc" style="-fx-font-size: 11px;"/>
+        <Label fx:id="roomInfoLabel" layoutX="220" layoutY="110"
+               textFill="WHITE" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+        <Line startX="20" startY="165" endX="400" endY="165"
+              stroke="WHITE" opacity="0.3"/>
+
+        <!-- Dates -->
+        <Label text="Check In" layoutX="20" layoutY="178"
+               textFill="#ffcccc" style="-fx-font-size: 11px;"/>
+        <Label fx:id="checkInLabel" layoutX="20" layoutY="196"
+               textFill="WHITE" style="-fx-font-size: 13px;"/>
+
+        <Label text="Check Out" layoutX="160" layoutY="178"
+               textFill="#ffcccc" style="-fx-font-size: 11px;"/>
+        <Label fx:id="checkOutLabel" layoutX="160" layoutY="196"
+               textFill="WHITE" style="-fx-font-size: 13px;"/>
+
+        <Label text="Nights" layoutX="320" layoutY="178"
+               textFill="#ffcccc" style="-fx-font-size: 11px;"/>
+        <Label fx:id="daysLabel" layoutX="320" layoutY="196"
+               textFill="WHITE" style="-fx-font-size: 13px;"/>
+
+        <Line startX="20" startY="230" endX="400" endY="230"
+              stroke="WHITE" opacity="0.3"/>
+
+        <!-- Bill Breakdown -->
+        <Label text="Room Rate:" layoutX="20" layoutY="245"
+               textFill="#ffcccc" style="-fx-font-size: 12px;"/>
+        <Label fx:id="rateLabel" layoutX="250" layoutY="245"
+               textFill="WHITE" style="-fx-font-size: 12px;"/>
+
+        <Label text="Extra Services:" layoutX="20" layoutY="272"
+               textFill="#ffcccc" style="-fx-font-size: 12px;"/>
+        <Label fx:id="extraLabel" layoutX="250" layoutY="272"
+               textFill="WHITE" style="-fx-font-size: 12px;"/>
+
+        <Label text="Tax (20%):" layoutX="20" layoutY="299"
+               textFill="#ffcccc" style="-fx-font-size: 12px;"/>
+        <Label fx:id="taxLabel" layoutX="250" layoutY="299"
+               textFill="WHITE" style="-fx-font-size: 12px;"/>
+
+        <Line startX="20" startY="330" endX="400" endY="330"
+              stroke="WHITE" opacity="0.5"/>
+
+        <!-- Total -->
+        <Label text="TOTAL" layoutX="20" layoutY="345"
+               textFill="WHITE">
+            <font><Font name="System Bold" size="16.0"/></font>
+        </Label>
+        <Label fx:id="totalLabel" layoutX="250" layoutY="342"
+               textFill="WHITE">
+            <font><Font name="System Bold" size="18.0"/></font>
+        </Label>
+
+        <Line startX="20" startY="385" endX="400" endY="385"
+              stroke="WHITE" opacity="0.3"/>
+
+        <!-- QR -->
+        <ImageView fx:id="qrImageView"
+                   layoutX="150" layoutY="415"
+                   fitWidth="120" fitHeight="120"
+                   preserveRatio="true"/>
+
+        <!-- Close Button -->
+        <Button text="Close"
+                layoutX="300" layoutY="536"
+                prefWidth="100" prefHeight="32"
+                onAction="#handleClose"
+                focusTraversable="false"
+                style="-fx-background-color: white;
+                       -fx-text-fill: #8a0824;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 6;
+                       -fx-cursor: hand;"/>
+
+    </children>
+</AnchorPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1126.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.hotelStaffPageController">
+   <children>
+      <Label fx:id="hotelNameLabel" layoutX="14.0" layoutY="22.0" prefHeight="46.0" prefWidth="963.0" text="Hotel's Name/Staff" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <HBox fx:id="staffRoleContainer" layoutX="13.0" layoutY="102.0" prefHeight="103.0" prefWidth="825.0" spacing="20.0" />
+      <TableView fx:id="staffTable" layoutX="10.0" layoutY="222.0" prefHeight="470.0" prefWidth="1109.0" style="-fx-background-color: #6b061c;">
+        <columns>
+          <TableColumn fx:id="colStaffId" prefWidth="68.0" text="ID" />
+          <TableColumn fx:id="colStaffName" prefWidth="185.0" text="Name" />
+            <TableColumn fx:id="colStaffGender" prefWidth="34.0" text="Sex" />
+            <TableColumn fx:id="colStaffPhone" prefWidth="112.0" text="Phone" />
+            <TableColumn fx:id="colStaffEmail" prefWidth="252.0" text="Email" />
+            <TableColumn fx:id="colStaffJoin" prefWidth="87.0" text="Joining Date" />
+            <TableColumn fx:id="colStaffSalary" prefWidth="88.0" text="Salary" />
+            <TableColumn fx:id="colStaffRole" prefWidth="133.0" text="Role" />
+            <TableColumn fx:id="colActions" prefWidth="148.0" text="Actions" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" focusTraversable="false" layoutX="1052.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Back" />
+      <Button fx:id="addStaff" focusTraversable="false" layoutX="1052.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleAddStaff" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Add" />
+      <TextField fx:id="searchField" focusTraversable="false" layoutX="862.0" layoutY="171.0" prefHeight="34.0" prefWidth="160.0" promptText="Search" style="-fx-background-color: white; -fx-font-size: 12px;" />
+      <Button fx:id="toggleDeletedButton" focusTraversable="false" layoutX="988.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleToggleDeleted" prefHeight="34.0" prefWidth="127.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Show Deleted" />
+   </children>
+</AnchorPane>
