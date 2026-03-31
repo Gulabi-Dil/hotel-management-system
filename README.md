@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-A desktop-based Hotel Management System built using **Java and JavaFX** to manage bookings, rooms, staff, and payments across multiple hotels through a centralized interface.
+A desktop-based Hotel Management System prototype built using **Java and JavaFX** to manage bookings, rooms, staff, and payments across multiple hotels through a centralized interface.
 
 It replaces manual workflows with a structured, database-driven system designed for administrators managing multiple properties.
 
