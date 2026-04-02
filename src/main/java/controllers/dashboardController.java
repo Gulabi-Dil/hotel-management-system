@@ -32,7 +32,8 @@ public class dashboardController {
     private ScrollPane scrollPane;
 
     private final hotelDao dao = new hotelDao();
-    private String editingHotelId = null; private boolean showingDeleted = false;
+    private String editingHotelId = null;
+    private boolean showingDeleted = false;
 
     @FXML
     public void initialize() {
@@ -288,6 +289,10 @@ public class dashboardController {
     }
 
     private void handleDeleteHotel(int hotelId) {
+        if (dao.hasActiveBookings(hotelId)) {
+            messageLabel.setText("Cannot delete — hotel has guests currently checked in!");
+            return;
+        }
         boolean success = dao.softDeleteHotel(hotelId);
         if (success) {
             messageLabel.setText("Deleted Hotel #" + hotelId + " successfully!");

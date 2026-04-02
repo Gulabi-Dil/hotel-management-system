@@ -320,10 +320,15 @@ END $$;
 CREATE OR REPLACE FUNCTION cascade_hotel_soft_delete()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Decommission all rooms of this hotel
+    -- Block soft delete if any active checked_in bookings exist
+    IF EXISTS (SELECT 1 FROM Booking WHERE hotel_id = NEW.hotel_id AND status = 'checked_in') THEN
+        RAISE EXCEPTION 'Cannot delete hotel with active checked-in bookings.';
+    END IF;
+
+    -- Decommission all rooms
     UPDATE Room SET status = 'decommissioned' WHERE hotel_id = NEW.hotel_id;
     
-    -- Deactivate all staff of this hotel
+    -- Deactivate all staff
     UPDATE Staff SET is_active = FALSE WHERE hotel_id = NEW.hotel_id;
     
     RETURN NEW;
