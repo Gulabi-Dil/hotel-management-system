@@ -170,12 +170,12 @@ git clone https://github.com/Gulabi-Dil/hotel-management-system.git
 ## Limitations
 
 - Application window cannot be resized.
-- Manual re-entry required for reactivating hotels.
+- Cannot book multiple rooms at once.
+- No system to handle race conditions while booking.
 
 ## Future Improvements
 
 - Add responsive/resizable UI
-- Improve hotel restoration workflow
 - Booking multiple rooms at once
 - Introduce detailed analytics and reports
 - Handle race conditions during simultaneous bookings
