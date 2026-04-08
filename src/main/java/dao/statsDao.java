@@ -6,19 +6,16 @@ import java.util.List;
 import utils.DBConnection;
 
 public class statsDao {
-
-    // Monthly revenue — last 6 months
     public List<String> getRevenueMonths() {
         List<String> months = new ArrayList<>();
-        String query =
-            "SELECT month FROM (" +
-            "SELECT TO_CHAR(b.check_out, 'Mon YYYY') AS month, MIN(b.check_out) AS sort_date " +
-            "FROM Payment p " +
-            "JOIN Booking b ON p.booking_id = b.booking_id " +
-            "JOIN Room r ON b.hotel_id = r.hotel_id AND b.room_number = r.room_number " +
-            "WHERE b.check_out >= CURRENT_DATE - INTERVAL '6 months' " +
-            "GROUP BY TO_CHAR(b.check_out, 'Mon YYYY')" +
-            ") sub ORDER BY sort_date";
+         String query =
+        "SELECT TO_CHAR(date_trunc('month', b.check_out), 'Mon YYYY') AS month " +
+        "FROM Payment p " +
+        "JOIN Booking b ON p.booking_id = b.booking_id " +
+        "WHERE p.status = 'completed' " +
+        "AND b.check_out >= CURRENT_DATE - INTERVAL '6 months' " +
+        "GROUP BY date_trunc('month', b.check_out) " +
+        "ORDER BY date_trunc('month', b.check_out)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
@@ -30,15 +27,14 @@ public class statsDao {
     public List<Double> getRevenueAmounts() {
         List<Double> amounts = new ArrayList<>();
         String query =
-            "SELECT revenue FROM (" +
-            "SELECT MIN(b.check_out) AS sort_date, " +
-            "SUM(r.price_per_day * (b.check_out - b.check_in) + COALESCE(p.extra_services_cost, 0)) AS revenue " +
-            "FROM Payment p " +
-            "JOIN Booking b ON p.booking_id = b.booking_id " +
-            "JOIN Room r ON b.hotel_id = r.hotel_id AND b.room_number = r.room_number " +
-            "WHERE b.check_out >= CURRENT_DATE - INTERVAL '6 months' " +
-            "GROUP BY TO_CHAR(b.check_out, 'Mon YYYY')" +
-            ") sub ORDER BY sort_date";
+        "SELECT SUM(r.price_per_day * (b.check_out - b.check_in) + COALESCE(p.extra_services_cost, 0)) AS revenue " +
+        "FROM Payment p " +
+        "JOIN Booking b ON p.booking_id = b.booking_id " +
+        "JOIN Room r ON b.hotel_id = r.hotel_id AND b.room_number = r.room_number " +
+        "WHERE p.status = 'completed' " +
+        "AND b.check_out >= CURRENT_DATE - INTERVAL '6 months' " +
+        "GROUP BY date_trunc('month', b.check_out) " +
+        "ORDER BY date_trunc('month', b.check_out)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
