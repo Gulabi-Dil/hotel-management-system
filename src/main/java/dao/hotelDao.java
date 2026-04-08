@@ -226,14 +226,8 @@ public class hotelDao {
             conn = DBConnection.getConnection();
             conn.setAutoCommit(false);
 
-            String checkQuery = "SELECT COUNT(*) FROM Booking WHERE hotel_id = ? AND status = 'checked_in'"; // to not
-                                                                                                             // allow
-                                                                                                             // deletion
-                                                                                                             // when
-                                                                                                             // hotel
-                                                                                                             // has
-                                                                                                             // active
-                                                                                                             // bookings.
+            String checkQuery = "SELECT COUNT(*) FROM Booking WHERE hotel_id = ? AND status = 'checked_in'"; 
+            // to not allow deletion when hotel has active bookings.
             try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
                 checkStmt.setInt(1, hotelId);
                 ResultSet rs = checkStmt.executeQuery();
@@ -242,8 +236,7 @@ public class hotelDao {
                     return false;
                 }
             }
-            try (PreparedStatement stmt = conn
-                    .prepareStatement("UPDATE Hotel SET is_active = FALSE WHERE hotel_id = ?")) {
+            try (PreparedStatement stmt = conn.prepareStatement("UPDATE Hotel SET is_active = FALSE WHERE hotel_id = ?")) {
                 stmt.setInt(1, hotelId);
                 stmt.executeUpdate();
             }

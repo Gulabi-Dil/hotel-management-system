@@ -203,12 +203,11 @@ public class hotelBookingPageController {
     public void setEdit(Booking booking) {
         editing = true;
         editingBooking = booking;
-        roomTypeField.setValue(booking.getRoomType());
         checkInField.setValue(booking.getCheckIn());
         checkOutField.setValue(booking.getCheckOut());
         statusField.setValue(booking.getStatus());
-
         // Room number will be set in listener of roomTypeField
+        roomTypeField.setValue(booking.getRoomType());
         roomNumField.setValue(booking.getRoomNum());
         aadharField.getEditor().setText(booking.getAadhar());
         parentRoot.requestFocus();
@@ -250,14 +249,14 @@ public class hotelBookingPageController {
                 messageLabel.setText("Booking done successfully!");
             } else {
                 editingBooking.setAadhar(aadhar);
-                editingBooking.setRoomType(roomType);
-                editingBooking.setRoomNum(roomNumber);
                 editingBooking.setCheckIn(inDate);
                 editingBooking.setCheckOut(outDate);
                 editingBooking.setStatus(status);
-
+                editingBooking.setRoomNum(roomNumber);
+                editingBooking.setRoomType(roomType);
                 dao.updateBooking(editingBooking);
-                messageLabel.setText("Booking updated successfully!");
+                if(editingBooking.getStatus()=="cancelled") messageLabel.setText("Booking #" + editingBooking.getBookingId() + " cancelled successfully!");
+                else messageLabel.setText("Booking #" + editingBooking.getBookingId() + " updated successfully!");
                 addButton.setText("Add");
                 editing = false;
                 editingBooking = null;
