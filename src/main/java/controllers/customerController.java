@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableView;
@@ -28,7 +29,7 @@ public class customerController {
     @FXML
     private ComboBox<String> genderField;
     @FXML
-    private Button addButton,toggleDeletedButton;
+    private Button addButton, toggleDeletedButton;
     @FXML
     private Label messageLabel;
     @FXML
@@ -78,9 +79,12 @@ public class customerController {
         setupTable();
         loadAllCustomers();
         genderField.getItems().addAll("Male", "Female", "Other");
-        addTooltipToColumn(colName); addTooltipToColumn(colPhone);
-        addTooltipToColumn(colEmail); addTooltipToColumn(colState);
-        addTooltipToColumn(colCity); addTooltipToColumn(colStreet);
+        addTooltipToColumn(colName);
+        addTooltipToColumn(colPhone);
+        addTooltipToColumn(colEmail);
+        addTooltipToColumn(colState);
+        addTooltipToColumn(colCity);
+        addTooltipToColumn(colStreet);
         customerTable.getSelectionModel().clearSelection();
         customerTable.setFocusTraversable(false);
         root.requestFocus();
@@ -149,13 +153,20 @@ public class customerController {
                     messageLabel.setText("Editing Customer...");
                     addButton.setText("Update");
                 },
-                Customer -> {
+                customer -> {
                     try {
-                        new customerDao().softDeleteCustomer(Customer.getAadhar());
-                        loadAllCustomers();
-                    } catch (Exception e) {
-                        messageLabel.setText("Error! Could not delete customer's record!");
-                        return;
+                        String error = new customerDao().softDeleteCustomer(customer.getAadhar());
+                        if (error != null) {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Cannot Delete Customer");
+                            alert.setHeaderText(null);
+                            alert.setContentText(error);
+                            alert.showAndWait();
+                        } else {
+                            loadAllCustomers();
+                        }
+                    } catch (SQLException e) {
+                        messageLabel.setText("Database error: " + e.getMessage());
                     }
                 });
     }
@@ -168,9 +179,12 @@ public class customerController {
                 c -> {
                     String lower = searchField.getText().toLowerCase();
                     return c.getAadhar().startsWith(lower);
-                    //return c.getName().toLowerCase().startsWith(lower) || c.getAadhar().startsWith(lower) ||
-                    //        c.getPhone().startsWith(lower) || c.getEmail().toLowerCase().startsWith(lower) ||
-                    //        c.getState().toLowerCase().startsWith(lower) || c.getCity().toLowerCase().startsWith(lower);
+                    // return c.getName().toLowerCase().startsWith(lower) ||
+                    // c.getAadhar().startsWith(lower) ||
+                    // c.getPhone().startsWith(lower) ||
+                    // c.getEmail().toLowerCase().startsWith(lower) ||
+                    // c.getState().toLowerCase().startsWith(lower) ||
+                    // c.getCity().toLowerCase().startsWith(lower);
                 });
     }
 
@@ -208,16 +222,17 @@ public class customerController {
             customerDao daob = new customerDao();
             if (!editing) {
                 String result = daob.addCustomer(customer);
-                messageLabel.setText(result.equals("success") ? "Customer added successfully!" : result);
+                messageLabel.setText(result.equals("success") ? name + "'s details added successfully!" : result);
             } else {
                 daob.updateCustomer(customer, editingCustomer.getAadhar());
-                messageLabel.setText("Customer updated successfully!");
+                messageLabel.setText(name + "'s details updated successfully!");
                 addButton.setText("Add");
                 editing = false;
                 editingCustomer = null;
             }
             clearFields();
             loadAllCustomers();
+            root.requestFocus();
         } catch (SQLException e) {
 
             String code = e.getSQLState();

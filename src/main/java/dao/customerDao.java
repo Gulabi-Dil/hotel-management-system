@@ -118,13 +118,24 @@ public class customerDao {
         }
     }
 
-    public void softDeleteCustomer(String aadharNum) throws SQLException {
+    public String softDeleteCustomer(String aadharNum) throws SQLException {
+        String checkQuery = "SELECT COUNT(*) FROM Booking WHERE aadhar_num = ? AND status IN ('confirmed', 'checked_in')";
         String query = "UPDATE Customer SET is_active = FALSE WHERE aadhar_num = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+            checkStmt.setString(1, aadharNum);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return "Cannot delete customer: they have active or upcoming bookings.";
+            }
+        }
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, aadharNum);
             stmt.executeUpdate();
         }
+        return null;
     }
 
     public List<Customer> getDeletedCustomers() {

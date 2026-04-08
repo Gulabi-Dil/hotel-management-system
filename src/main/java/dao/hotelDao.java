@@ -302,4 +302,14 @@ public class hotelDao {
         return false;
     }
 
+    public void reactivateHotel(int hotelId) {
+        String query = "UPDATE Hotel SET is_active = TRUE WHERE hotel_id = ?";
+        try(Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query);) {
+            stmt.setInt(1,hotelId);
+            stmt.executeUpdate();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

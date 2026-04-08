@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1126.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.customerController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1143.0" style="-fx-background-color: #8a0824;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.customerController">
    <children>
       <VBox layoutX="14.0" layoutY="104.0" prefHeight="93.0" prefWidth="622.0" spacing="3.0">
          <children>
@@ -38,8 +38,8 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" focusTraversable="false" layoutX="1045.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Add" />
-      <TableView fx:id="customerTable" layoutX="6.0" layoutY="198.0" prefHeight="497.0" prefWidth="1114.0" style="-fx-background-color: #6b061c;">
+      <Button fx:id="addButton" focusTraversable="false" layoutX="1057.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="34.0" prefWidth="60.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Add" />
+      <TableView fx:id="customerTable" layoutX="6.0" layoutY="198.0" prefHeight="497.0" prefWidth="1132.0" style="-fx-background-color: #6b061c;">
          <columns>
             <TableColumn fx:id="colAadhar" prefWidth="96.0" text="Aadhar" />
             <TableColumn fx:id="colName" prefWidth="172.0" text="Name" />
@@ -57,7 +57,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="searchField" focusTraversable="false" layoutX="858.0" layoutY="144.0" prefHeight="34.0" prefWidth="160.0" promptText="Search" style="-fx-background-color: white; -fx-font-size: 12px;" />
-      <Button fx:id="toggleDeletedButton" focusTraversable="false" layoutX="977.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleToggleDeleted" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Show Deleted" />
+      <TextField fx:id="searchField" focusTraversable="false" layoutX="881.0" layoutY="144.0" prefHeight="34.0" prefWidth="160.0" promptText="Search" style="-fx-background-color: white; -fx-font-size: 12px;" />
+      <Button fx:id="toggleDeletedButton" focusTraversable="false" layoutX="989.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleToggleDeleted" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: white; -fx-text-fill: #8a0824; -fx-font-family: 'Roboto Medium'; -fx-font-size: 12px; -fx-background-radius: 4; -fx-cursor: hand;" text="Show Deleted" />
    </children>
 </AnchorPane>

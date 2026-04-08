@@ -102,6 +102,7 @@ public class dashboardController {
     }
 
     private AnchorPane createHotelCard(Hotel hotel) {
+        String button_icon = "🗑️";
         AnchorPane card = new AnchorPane();
         card.prefWidthProperty().bind(scrollPane.widthProperty().divide(3).subtract(25)); //
         card.setStyle(cardHovering.defaultCardStyle());
@@ -123,6 +124,7 @@ public class dashboardController {
         AnchorPane.setLeftAnchor(name, 14.0);
 
         if (!hotel.isActive()) {
+            button_icon = "⟳";
             name.setStyle(
                     "-fx-text-fill: grey; -fx-font-family: 'Roboto Medium'; -fx-font-size: 15px; -fx-font-weight: bold;");
             Label deletedLabel = new Label("Deleted");
@@ -159,12 +161,12 @@ public class dashboardController {
                 "-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
         editBtn.setPadding(new javafx.geometry.Insets(0));
 
-        Button deleteBtn = new Button("🗑️");
-        deleteBtn.setStyle(
+        Button deleteRestore = new Button(button_icon);
+        deleteRestore.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
-        deleteBtn.setPadding(new javafx.geometry.Insets(0));
+        deleteRestore.setPadding(new javafx.geometry.Insets(0));
 
-        HBox btnBox = new HBox(14, editBtn, deleteBtn);
+        HBox btnBox = new HBox(14, editBtn, deleteRestore);
         AnchorPane.setTopAnchor(btnBox, 6.0);
         AnchorPane.setRightAnchor(btnBox, 2.0);
 
@@ -177,7 +179,7 @@ public class dashboardController {
             labels.forEach(l -> l.setStyle(l.getStyle().replace("white", "black")));
             editBtn.setStyle(
                     "-fx-background-color: transparent; -fx-text-fill: black; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
-            deleteBtn.setStyle(
+            deleteRestore.setStyle(
                     "-fx-background-color: transparent; -fx-text-fill: black; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
         });
 
@@ -186,7 +188,7 @@ public class dashboardController {
             labels.forEach(l -> l.setStyle(l.getStyle().replace("black", "white")));
             editBtn.setStyle(
                     "-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
-            deleteBtn.setStyle(
+            deleteRestore.setStyle(
                     "-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand; -fx-border-color: transparent; -fx-font-size: 16px;");
         });
 
@@ -196,12 +198,19 @@ public class dashboardController {
             handleEditHotel(hotel);
         });
 
-        deleteBtn.setOnMouseClicked(e -> {
+        deleteRestore.setOnMouseClicked(e -> {
             e.consume();
-            handleDeleteHotel(hotel.getId());
+            if(!hotel.isActive()) handleRestoreHotel(hotel.getId());
+            else handleDeleteHotel(hotel.getId());
         });
 
         return card;
+    }
+
+    private void handleRestoreHotel(int hotelId) {
+        dao.reactivateHotel(hotelId);
+        messageLabel.setText("Restored Hotel #"+hotelId + " successfully!");
+        loadStats(); loadHotelCards();
     }
 
     private void setActiveButton(Button active) {
@@ -265,7 +274,7 @@ public class dashboardController {
         if (editingHotelId != null) {
             boolean success = dao.updateHotel(Integer.parseInt(editingHotelId), name, street, landmark, phones);
             if (success) {
-                messageLabel.setText("Hotel updated successfully!");
+                messageLabel.setText(name + " updated successfully!");
                 editingHotelId = null;
                 addButton.setText("Add");
                 clearFields();
@@ -276,9 +285,9 @@ public class dashboardController {
             }
         } else {
             String result = dao.addHotel(name, street, landmark, phones);
-            boolean isSuccess = result.equals("success") || result.equals("Hotel reactivated successfully!");
+            boolean isSuccess = result.equals("success") || result.equals(name + " reactivated successfully!");
 
-            messageLabel.setText(result.equals("success") ? "Hotel added successfully!" : result);
+            messageLabel.setText(result.equals("success") ? name + " added successfully!" : result);
 
             if (isSuccess) {
                 clearFields();

@@ -181,16 +181,28 @@ public class roomDao {
         }
     }
 
-    public void updateRoom(Room room, int oldRoomNum) throws SQLException {
-        String query = "UPDATE room SET room_number = ?, room_type = ?, price_per_day = ?, status = ? WHERE hotel_id = ? AND room_number = ?";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query);) {
-            stmt.setInt(1, room.getRoomNum());
-            stmt.setString(2, room.getType());
-            stmt.setDouble(3, room.getPricePerDay());
-            stmt.setString(4, room.getStatus());
-            stmt.setInt(5, room.getHotelId());
-            stmt.setInt(6, oldRoomNum);
+    public String updateRoom(Room room, int oldRoomNum) throws SQLException {
+        String checkQuery = "SELECT status, price_per_day FROM Room WHERE hotel_id = ? AND room_number = ?";
+        String updateQuery = "UPDATE room SET room_number = ?, room_type = ?, price_per_day = ?, status = ? WHERE hotel_id = ? AND room_number = ?";
+
+        try (Connection conn = DBConnection.getConnection();PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+            checkStmt.setInt(1, room.getHotelId());  checkStmt.setInt(2, oldRoomNum);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next()) {
+                String currentStatus = rs.getString("status");
+                double currentPrice = rs.getDouble("price_per_day");
+                if ((currentStatus.equals("booked") || currentStatus.equals("occupied")) && room.getPricePerDay() != currentPrice) {
+                    return "Cannot change price: Room is currently " + currentStatus + ".";
+                }
+            }
+        }
+
+        try (Connection conn = DBConnection.getConnection();PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
+            stmt.setInt(1, room.getRoomNum()); stmt.setString(2, room.getType());
+            stmt.setDouble(3, room.getPricePerDay()); stmt.setString(4, room.getStatus());
+            stmt.setInt(5, room.getHotelId()); stmt.setInt(6, oldRoomNum);
             stmt.executeUpdate();
         }
+        return null;
     }
 }

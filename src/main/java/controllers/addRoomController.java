@@ -59,9 +59,13 @@ public class addRoomController {
             Room room = new Room(hotelId, roomNum, type, price, status);
 
             if (!editing) {
-                daob.addRoom(room); 
+                daob.addRoom(room);
             } else {
-                daob.updateRoom(room, editRoom.getRoomNum());
+                String error = daob.updateRoom(room, editRoom.getRoomNum());
+                if (error != null) {
+                    messageLabel.setText(error);
+                    return;
+                }
             }
 
             roomNumberField.getScene().getWindow().hide();
